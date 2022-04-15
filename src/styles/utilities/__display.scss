@@ -1,0 +1,45 @@
+// Flex display utilities
+
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.order {
+  @for $i from 1 through 5 {
+    &-#{$i} {
+      order: $i;
+    }
+  }
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+
+.align-self {
+  &-start {
+    align-self: flex-start;
+  }
+  &-end {
+    align-self: flex-end;
+  }
+  &-center {
+    align-self: center;
+  }
+}
+
+.justify-self {
+  &-start {
+    justify-self: flex-start;
+  }
+  &-end {
+    justify-self: flex-end;
+  }
+  &-center {
+    justify-self: center;
+  }
+}

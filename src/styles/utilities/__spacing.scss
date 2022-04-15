@@ -1,0 +1,58 @@
+@use "sass:math" as math;
+
+$directions: (
+  "l": (
+    "left",
+  ),
+  "t": (
+    "top",
+  ),
+  "r": (
+    "right",
+  ),
+  "b": (
+    "bottom",
+  ),
+  "x": (
+    "left",
+    "right",
+  ),
+  "y": (
+    "top",
+    "bottom",
+  ),
+  "a": (
+    "top",
+    "bottom",
+    "left",
+    "right",
+  ),
+);
+
+@each $directionKey, $directionList in $directions {
+  @for $i from -8 through 8 {
+    $prefix: "";
+    @if $i < 0 {
+      $prefix: "n";
+    }
+
+    .#{$prefix}m#{$directionKey}-#{math.abs($i)} {
+      @each $direction in $directionList {
+        margin-#{$direction}: unquote($string: $i * 0.25 + "rem");
+      }
+    }
+    .#{$prefix}p#{$directionKey}-#{math.abs($i)} {
+      @each $direction in $directionList {
+        padding-#{$direction}: unquote($string: $i * 0.25 + "rem");
+      }
+    }
+  }
+}
+
+@each $directionKey, $directionList in $directions {
+  .m#{$directionKey}-auto {
+    @each $direction in $directionList {
+      margin-#{$direction}: auto;
+    }
+  }
+}

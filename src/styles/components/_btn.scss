@@ -1,0 +1,29 @@
+:where(.btn) {
+  padding: var(--padding-block, 0.5rem) var(--padding-inline, 0.7rem);
+
+  border-radius: var(--radius, 4px);
+
+  background-color: var(--background, var(--action-400));
+  color: var(--color, var(--action-fg-400));
+
+  border: none;
+
+  transition-duration: 500ms;
+
+  &:hover {
+    --background: var(--action-700);
+  }
+
+  &:where(.warning) {
+    --background: var(--danger-400);
+    --color: var(--danger-fg-400);
+    &:hover {
+      --background: var(--danger-700);
+    }
+  }
+
+  &:where(.flat) {
+    --background: transparent;
+    --color: var(--primary-fg);
+  }
+}

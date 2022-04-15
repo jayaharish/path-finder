@@ -1,0 +1,31 @@
+@use "../abstracts/variables" as *;
+@use "sass:math" as math;
+:root {
+  @each $color, $hsl-color in $colors {
+    @for $i from 1 through 7 {
+      $calculated-color: darken(
+        $color: $hsl-color,
+        $amount: $i * 2.5%,
+      );
+
+      @if $i < 4 {
+        $calculated-color: lighten(
+          $color: $hsl-color,
+          $amount: math.percentage(math.div((4 - $i) * 2.5, 100)),
+        );
+      } @else if $i == 4 {
+        $calculated-color: $hsl-color;
+      }
+
+      --#{$color}-#{$i * 100}: #{$calculated-color};
+
+      .#{$color}-#{$i * 100} {
+        color: var(--#{$color}-#{$i * 100});
+      }
+
+      .#{$color}-bg-#{$i * 100} {
+        background-color: var(--#{$color}-#{$i * 100});
+      }
+    }
+  }
+}

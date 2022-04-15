@@ -1,0 +1,25 @@
+$font-weights: (
+  "light": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+@each $weight, $value in $font-weights {
+  .font-weight-#{$weight} {
+    font-weight: $value;
+  }
+}
+
+$headline-fonts: (
+  "h1": 2rem,
+  "h2": 1.5rem,
+  "h3": 1.3rem,
+  "h4": 1.1rem,
+  "p": 0.9rem,
+);
+
+@each $element, $font-size in $headline-fonts {
+  #{$element} {
+    font-size: $font-size;
+  }
+}
