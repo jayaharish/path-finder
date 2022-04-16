@@ -16,7 +16,6 @@ export function ActionHeader() {
   return (
     <div className="flex align-center action-header px-4 py-2 secondary-bg-400">
       <Action
-        disabled
         isActive={startNode}
         onClick={() => dispatchActions?.setStartNode(!startNode)}
       >
