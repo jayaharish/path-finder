@@ -11,11 +11,13 @@ $font-weights: (
 }
 
 $headline-fonts: (
-  "h1": 2rem,
-  "h2": 1.5rem,
-  "h3": 1.3rem,
-  "h4": 1.1rem,
-  "p": 0.9rem,
+  "h1": var(--fs-600),
+  "h2": var(--fs-550),
+  "h3": var(--fs-500),
+  "h4": var(--fs-450),
+  "h5": var(--fs-400),
+  "h6": var(--fs-350),
+  "p": var(--fs-350),
 );
 
 @each $element, $font-size in $headline-fonts {

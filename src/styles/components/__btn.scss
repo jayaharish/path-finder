@@ -1,4 +1,6 @@
 :where(.btn) {
+  font-size: var(--fs-350);
+
   padding: var(--padding-block, 0.5rem) var(--padding-inline, 0.7rem);
 
   border-radius: var(--radius, 4px);
@@ -22,8 +24,16 @@
     }
   }
 
-  &:where(.flat) {
+  &:where(.transparent) {
     --background: transparent;
     --color: var(--primary-fg);
+  }
+
+  &:where(.wider) {
+    --padding-inline: 0.9rem;
+  }
+
+  &:where(.flat) {
+    --radius: 0px;
   }
 }

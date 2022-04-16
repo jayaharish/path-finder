@@ -1,0 +1,9 @@
+@use "sass:map" as map;
+
+$font-size-map: ();
+
+$font-size-step: 0.125;
+
+@for $i from 1 through 16 {
+  $font-size-map: map.set($font-size-map, #{$i * 50}, $i * $font-size-step);
+}

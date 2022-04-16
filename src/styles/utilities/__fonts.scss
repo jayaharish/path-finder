@@ -1,0 +1,20 @@
+@use "../abstracts/fonts" as fonts;
+
+:root {
+  @each $font-weight, $font-value in fonts.$font-size-map {
+    --fs-#{$font-weight}: #{$font-value + "em"};
+    @at-root .font-#{$font-weight} {
+      font-size: var(--fs-#{$font-weight});
+    }
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+.text-start {
+  text-align: start;
+}
+.text-end {
+  text-align: end;
+}
