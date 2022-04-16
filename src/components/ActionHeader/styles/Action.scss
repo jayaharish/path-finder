@@ -1,0 +1,10 @@
+.action-item {
+  cursor: pointer;
+  color: var(--accent-400);
+  height: 20px;
+  border-radius: 4px;
+  transition: 500ms;
+  &.active {
+    background-color: var(--primary-500);
+  }
+}
