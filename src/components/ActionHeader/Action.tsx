@@ -5,16 +5,17 @@ interface ActionItemProps {
   isActive: boolean;
   classes?: string;
   onClick: Function;
+  disabled?: boolean;
 }
 
 export function Action(props: ActionItemProps) {
   const classes = props.classes || "";
   return (
     <div
-      onClick={() => props.onClick()}
+      onClick={() => !props.disabled && props.onClick()}
       className={`action-item px-2 py-1 ${
         props.isActive ? "active" : ""
-      } ${classes}`}
+      } ${classes} ${props.disabled ? "disabled" : ""}`}
     >
       {props.children}
     </div>
