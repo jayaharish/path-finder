@@ -12,7 +12,7 @@ export function ActionHeader() {
     AlgorithmActionContext
   );
   const dispatchActions = useContext(AlgorithmActionDispatchContext);
-  console.log(dispatchActions);
+
   return (
     <div className="flex align-center action-header px-4 py-2 secondary-bg-400">
       <Action

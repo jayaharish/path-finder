@@ -11,4 +11,4 @@ export enum ALGORITH_ACTIONS {
     ADD_WEIGHT = "Add Weight"
 }
 
-export type AlgorithmActionType = 'setStartNode' | 'setEndNode' | 'setAddWall' | 'setAddWeight'
+export type AlgorithmActionType = 'setStartNode' | 'setEndNode' | 'setAddWall' | 'setAddWeight' | 'changeWallWeight';

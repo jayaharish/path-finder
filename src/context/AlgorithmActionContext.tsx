@@ -1,38 +1,53 @@
-import { createContext, useMemo, useReducer } from "react";
+import {
+  createContext,
+  Dispatch,
+  Reducer,
+  ReducerAction,
+  useMemo,
+  useReducer,
+} from "react";
 import {
   AlgorithmActionType,
   ALGORITH_ACTIONS,
 } from "../constants/app.constants";
 import { ContextProviderProps } from "../interface/app.interface";
 
-type AlgorithmActionContextType = {
+export type AlgorithmActionContextType = {
   startNode: boolean;
   endNode: boolean;
   addWall: boolean;
   addWeight: boolean;
+  wallWeight: number;
 };
-type AlgorithmActionDispatchContextType = {
+export type AlgorithmActionDispatchContextType = {
   setStartNode: (value: boolean) => void;
   setEndNode: (value: boolean) => void;
   setAddWall: (value: boolean) => void;
   setAddWeight: (value: boolean) => void;
+  changeWallWeight: (value: number) => void;
 };
 type AlgorithmReducerActionType = {
   type: AlgorithmActionType;
-  value: boolean;
+  value: boolean | number;
 };
 
-const initialState = {
+const initialState: AlgorithmActionContextType = {
   startNode: false,
   endNode: false,
   addWall: false,
   addWeight: false,
+  wallWeight: 0,
 };
 
 export const AlgorithmActionContext =
   createContext<AlgorithmActionContextType>(initialState);
 export const AlgorithmActionDispatchContext =
   createContext<AlgorithmActionDispatchContextType | null>(null);
+
+type ReducerType = (
+  state: AlgorithmActionContextType,
+  action: AlgorithmReducerActionType
+) => AlgorithmActionContextType;
 
 const reducer = (
   state: AlgorithmActionContextType,
@@ -42,19 +57,23 @@ const reducer = (
     case "setStartNode":
       return {
         ...initialState,
-        startNode: action.value,
+        startNode: action.value as boolean,
       };
     case "setEndNode":
-      return { ...initialState, endNode: action.value };
+      return { ...initialState, endNode: action.value as boolean };
     case "setAddWall":
-      return { ...initialState, addWall: action.value };
+      return { ...initialState, addWall: action.value as boolean };
     case "setAddWeight":
-      return { ...initialState, addWeight: action.value };
+      return { ...initialState, addWeight: action.value as boolean };
+    case "changeWallWeight":
+      return { ...initialState, wallWeight: action.value as number };
+    default:
+      return state;
   }
 };
 
 export const AlgorithmActionContextProvider = (props: ContextProviderProps) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer<ReducerType>(reducer, initialState);
 
   const actions = useMemo(() => {
     return {
@@ -69,6 +88,9 @@ export const AlgorithmActionContextProvider = (props: ContextProviderProps) => {
       },
       setAddWeight: (value: boolean) => {
         dispatch({ type: "setAddWeight", value });
+      },
+      changeWallWeight: (value: number) => {
+        dispatch({ type: "changeWallWeight", value });
       },
     };
   }, [dispatch]);

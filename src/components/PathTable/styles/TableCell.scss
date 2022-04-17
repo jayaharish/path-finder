@@ -1,0 +1,18 @@
+.table-cell {
+  border: 1px solid var(--accent-700);
+  &.visited {
+    background-color: var(--primary-200);
+  }
+  &.path {
+    background-color: var(--secondary-400);
+  }
+  &.wall {
+    background-color: var(--primary-700);
+  }
+  &.start {
+    background-color: var(--secondary-200);
+  }
+  &.end {
+    background-color: var(--secondary-600);
+  }
+}

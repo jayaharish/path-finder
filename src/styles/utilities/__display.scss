@@ -43,3 +43,18 @@
     justify-self: center;
   }
 }
+
+.flex-grow {
+  @each $i in (0, 1) {
+    &-#{$i} {
+      flex-grow: $i;
+    }
+  }
+}
+.flex-shrink {
+  @each $i in (0, 1) {
+    &-#{$i} {
+      flex-shrink: $i;
+    }
+  }
+}
