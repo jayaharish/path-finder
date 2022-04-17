@@ -2,15 +2,19 @@ import "./styles/Header.scss";
 
 import { MdArrowDropDown } from "react-icons/md";
 import React, { SetStateAction, useContext, useMemo } from "react";
-import { ALGORITHM } from "../../constants/app.constants";
+import { Algorithm } from "../../constants/app.constants";
 import { Dropdown } from "../Dropdown";
 import { AlgorithmContext } from "../../context/AlgorithmContext";
 
 export function Header() {
-  const [currentAlgorithm, setAlgorithm] = useContext(AlgorithmContext);
+  const algorithmContext = useContext(AlgorithmContext);
+
+  const [currentAlgorithm, setAlgorithm] = algorithmContext || [];
+
   const dropdownItems = useMemo(() => {
-    return [ALGORITHM.DIJKSTRA, ALGORITHM.A_STAR, ALGORITHM.BELL_FORD];
+    return [Algorithm.DIJKSTRA, Algorithm.A_STAR, Algorithm.BELL_FORD];
   }, []);
+
   return (
     <header>
       <nav className="flex align-center px-4 primary-bg-400">
@@ -22,8 +26,8 @@ export function Header() {
             values={dropdownItems}
             placeholder="Select"
             onValueChange={(item) => {
-              (setAlgorithm as React.Dispatch<SetStateAction<ALGORITHM>>)(
-                item as ALGORITHM
+              (setAlgorithm as React.Dispatch<SetStateAction<Algorithm>>)(
+                item as Algorithm
               );
             }}
             activeItemRenderer={(item) => {

@@ -7,14 +7,24 @@ export function createEmptyTable(rowCount: number, columnCount: number) {
         .fill(0)
         .map((_) =>
             Array(columnCount)
-                .fill(DefaultTableItemProps)
+                .fill({ ...DefaultTableItemProps })
         )
 }
 
 export function getNewTableCellProps(cellProps: TableCellProps, currentActions: AlgorithmActionContextType) {
-    const result = DefaultTableItemProps;
+    const result = { ...DefaultTableItemProps };
     if (currentActions.addWall) {
-        result.weight = Infinity;
+        result.weight = cellProps.weight === Infinity ? 0 : Infinity;
+    } else if (currentActions.addWeight) {
+        result.weight = currentActions.wallWeight;
+    } else if (currentActions.startNode) {
+        result.isStartNode = !cellProps.isStartNode;
+    } else if (currentActions.endNode) {
+        result.isEndNode = !cellProps.isEndNode;
     }
     return result;
+}
+
+export function copyTable(table: TableCellProps[][]): TableCellProps[][] {
+    return table.map(row => row.map(cell => ({ ...cell })));
 }

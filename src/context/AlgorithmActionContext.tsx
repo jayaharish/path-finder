@@ -8,7 +8,7 @@ import {
 } from "react";
 import {
   AlgorithmActionType,
-  ALGORITH_ACTIONS,
+  AlgorithmActions,
 } from "../constants/app.constants";
 import { ContextProviderProps } from "../interface/app.interface";
 
@@ -17,6 +17,7 @@ export type AlgorithmActionContextType = {
   endNode: boolean;
   addWall: boolean;
   addWeight: boolean;
+  clearNode: boolean;
   wallWeight: number;
 };
 export type AlgorithmActionDispatchContextType = {
@@ -36,6 +37,7 @@ const initialState: AlgorithmActionContextType = {
   endNode: false,
   addWall: false,
   addWeight: false,
+  clearNode: false,
   wallWeight: 0,
 };
 
@@ -65,6 +67,8 @@ const reducer = (
       return { ...initialState, addWall: action.value as boolean };
     case "setAddWeight":
       return { ...initialState, addWeight: action.value as boolean };
+    case "clearNode":
+      return { ...initialState, clearNode: action.value as boolean };
     case "changeWallWeight":
       return { ...initialState, wallWeight: action.value as number };
     default:
@@ -88,6 +92,9 @@ export const AlgorithmActionContextProvider = (props: ContextProviderProps) => {
       },
       setAddWeight: (value: boolean) => {
         dispatch({ type: "setAddWeight", value });
+      },
+      clearNode: (value: boolean) => {
+        dispatch({ type: "clearNode", value });
       },
       changeWallWeight: (value: number) => {
         dispatch({ type: "changeWallWeight", value });

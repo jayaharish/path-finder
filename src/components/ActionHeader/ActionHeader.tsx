@@ -39,6 +39,7 @@ export function ActionHeader() {
       >
         Add Weight
       </Action>
+      <input type="number" className="action-input" placeholder="Wall Weight" />
     </div>
   );
 }
